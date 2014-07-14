@@ -1,0 +1,13 @@
+{
+        "name": "using-connect",
+        "version": "0.0.1",
+        "main": "app.js",
+        "dependencies": {
+                "body-parser":"1.4.x",
+                "morgan": "1.1.x",
+                "connect": "3.0.x"
+        },
+        "scripts": {
+                "start": "app.js"
+        }
+}

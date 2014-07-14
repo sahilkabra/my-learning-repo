@@ -1,0 +1,13 @@
+{
+        "name": "simple-rest-api",
+        "version": "0.0.1",
+        "main": "app.js",
+        "dependencies": {
+                "express": "4.4.x",
+                "mongodb":"1.4.x",
+                "body-parser":"1.4.x"
+        },
+        "scripts": {
+                "start": "app.js"
+        }
+}

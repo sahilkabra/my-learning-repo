@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+var spawn = require('child_process').spawn;
+var ls = spawn('ls', ['/']);
+ls.stdout.setEncoding('utf8');
+ls.stdout.on('data', function(data) {
+        console.log(data);
+});

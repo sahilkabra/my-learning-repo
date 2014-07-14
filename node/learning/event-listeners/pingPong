@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+
+var EventEmitter = require('events').EventEmitter;
+
+var pingPong = new EventEmitter();
+var PING = 'ping', PONG = 'pong';
+
+var logFunction = function(eventName, listenerId) {
+        return function() {
+                console.log("Got " + eventName + ' from ' + listenerId);
+                setTimeout(function() {
+                        var emitEvent = (eventName === PING? PONG : PING);
+                        pingPong.emit(emitEvent);
+                }, 2000);
+        }
+}
+
+pingPong.on(PING, logFunction(PING, 'PING 1L'));
+pingPong.on(PONG, logFunction(PONG, 'PONG 1L'));
+logFunction()();
+
+setTimeout(function() {
+        console.log("Adding another ping listener");
+        pingPong.on(PING, logFunction(PING, 'PING 2L'));
+}, 4000);
+
+setTimeout(function() {
+        console.log("removing ping listener");
+        pingPong.removeListener(PING, logFunction(PING, 'PING 2L'));
+}, 4000);

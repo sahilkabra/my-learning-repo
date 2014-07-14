@@ -1,0 +1,14 @@
+{
+        "name": "testing",
+        "version": "0.0.1",
+        "description": "This is practice testing for mocha and node assert",
+        "dependencies": {
+                "sayHello": "0.0.x"
+        },
+        "devDependencies": {
+                "mocha": "1.20.x"
+        },
+        "scripts": {
+                "test": "./node_modules/.bin/mocha"
+        }
+}

@@ -1,0 +1,7 @@
+{
+        "name": "using-mongo",
+        "version": "0.0.1",
+        "dependencies": {
+                "mongodb": "1.4.x"
+        }
+}
