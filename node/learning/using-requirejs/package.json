@@ -1,0 +1,10 @@
+{
+        "name": "using-requirejs",
+        "version": "0.0.1",
+        "description": "Demo of using require js with node require",
+        "dependencies": {
+                "requirejs": ">=1.0.0",
+                "sayHello": "0.0.x",
+                "underscore": ">=1.0.0"
+        }
+}

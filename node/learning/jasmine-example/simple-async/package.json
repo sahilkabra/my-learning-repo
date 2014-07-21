@@ -1,0 +1,9 @@
+{
+        "name": "jasmine-testing",
+        "version": "0.0.1",
+        "descript": "Using jasmine",
+        "dependencies": {
+                "jasmine-node": "> 1.0.0"
+        }
+}
+
