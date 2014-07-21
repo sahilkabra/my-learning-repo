@@ -8,11 +8,13 @@ var print = function(err, message) {
 }
 
 client.on('subscribe', function(channel, count) {
-        print(null, 'Subscribed to channel %s. Total Subscribers: %d', channel, count);
+        console.log('Subscribed to channel %s. Total Subscribers: %d', channel, count);
 });
 
 client.on('message', function(channel, message) {
-        console.log('Received message on channel %s. The message says: %s', channel, message);
+        var toPrint;
+        typeof message === 'string'? toPrint = message: toPrint = JSON.stringify(message);
+        console.log('Received message on channel %s. The message says: %s', channel, toPrint);
 });
 
 client.subscribe('channel1');
