@@ -37,3 +37,7 @@ Icon
 
 #Ignore node modules. These can be installed using npm
 **/node_modules/*
+
+.idea
+*.tar
+*.zip
