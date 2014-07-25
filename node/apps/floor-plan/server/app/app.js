@@ -7,4 +7,5 @@ app.use(morgan('short'));
 app.use(router);
 //app.use(error);
 app.listen(config.express.port);
+console.log('mongo url: %s', config.mongo.url);
 console.log('Service (%d) started on port %d', config.pid, config.express.port);
