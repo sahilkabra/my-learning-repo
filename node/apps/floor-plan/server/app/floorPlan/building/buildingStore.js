@@ -1,4 +1,4 @@
-/*
+
 var buildings = [{
                 'number': '1',
                 'name': 'T1'
@@ -10,7 +10,7 @@ var buildings = [{
                 'name': 'T3'
         }
 ];
-*/
+
 exports.getBuildings = function() {
         return buildings;
 };
