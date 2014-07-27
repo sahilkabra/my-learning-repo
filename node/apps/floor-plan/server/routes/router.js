@@ -4,7 +4,7 @@
  */
 
 var router = require('express').Router();
-var floorPlan = require('app/floorPlan');
+var floorPlanRouter = require('routes/floorPlanRouter');
 
-router.use('/plan', floorPlan);
+router.use('/plan', floorPlanRouter);
 module.exports = router;
