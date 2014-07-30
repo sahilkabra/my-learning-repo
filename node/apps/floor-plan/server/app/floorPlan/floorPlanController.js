@@ -1,25 +1,21 @@
-
-var buildingStore = require('./building/buildingStore');
-var floorStore = require('./floor/floorStore');
-
 /**
- * Returns an array of building objects
+ * This is the main controller for the floor plans module.
+ * It serves as an interface for retrieving information.
  */
-var getBuildings = function() {
-        return buildingStore.getBuildings();
+
+var stores =  {};
+
+stores['buildingStore'] = require('./building/buildingStore');
+stores['floorStore'] = require('./floor/floorStore');
+
+var get = function(what, criteria) {
+	return stores[what + 'Store'].get(criteria);
 };
 
-/**
- * Returns a building object
- */
-var getBuilding = function(buildingName) {
-        return buildingStore.getBuilding(buildingName);
-}
+exports.getBuildings = function(criteria) {
+		return get('building', criteria);
+};
 
-var getFloors = function(buildingName) {
-        return floorStore.getFloor(buildingName);
-}
-
-exports.getBuildings = getBuildings;
-exports.getFloors = getFloors;
-exports.getBuilding = getBuilding;
+exports.getFloors = function(criteria) {
+		return get('floor', criteria);
+};
