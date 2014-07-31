@@ -1,8 +1,8 @@
 var mongoClient = require('mongodb').MongoClient;
-var config = require('app/config');
+var config = require('app/config').mongo;
 
-var model = this;
-mongoClient.connect(config.mongo.url, function(err, db) {
+var db; 
+mongoClient.connect(config.url, function(err, database) {
         if (err) throw err;
-        model.db = db;
+        db = database;
 });
