@@ -9,13 +9,13 @@ stores['buildingStore'] = require('./building/buildingStore');
 stores['floorStore'] = require('./floor/floorStore');
 
 var get = function(what, criteria) {
-	return stores[what + 'Store'].get(criteria);
+        return stores[what + 'Store'].get(criteria);
 };
 
 exports.getBuildings = function(criteria) {
-		return get('building', criteria);
+        return get('building', criteria);
 };
 
 exports.getFloors = function(criteria) {
-		return get('floor', criteria);
+        return get('floor', criteria);
 };
