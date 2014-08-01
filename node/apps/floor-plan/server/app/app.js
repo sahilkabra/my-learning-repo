@@ -1,3 +1,8 @@
+//app/app
+
+/**
+ * The main app module. Attaches to the port configured after the application has connected to the database
+ */
 var express = require("express");
 var morgan = require('morgan');
 var router = require('routes/router');

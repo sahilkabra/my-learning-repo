@@ -1,3 +1,10 @@
+//app/config
+
+/**
+ * The only place where process is used.
+ * Stores any env configuration that is required.
+ * The app will get all properties from this object
+ */
 var config = module.exports;
 
 config.express = {
@@ -15,3 +22,10 @@ config.mongo.url = function() {
 }();
 
 config.pid = process.pid;
+
+/**
+ * Get the value of the key that is passed in
+ */
+config.get = function(key) {
+        return process[key]
+};

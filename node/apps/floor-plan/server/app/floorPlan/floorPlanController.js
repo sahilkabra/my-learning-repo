@@ -1,3 +1,5 @@
+//floorPlan/floorPlanController
+
 /**
  * This is the main controller for the floor plans module.
  * It serves as an interface for retrieving information.
