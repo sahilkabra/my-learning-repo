@@ -23,6 +23,7 @@ var ASyncRestaurant = function asyncRestaurant() {
 	};
 
 	var clean = function(customerNumber) {
+		delete this.customers[customerNumber];
 		console.log('Cleaned up after customer ', customerNumber);
 	}
 	return {

@@ -1,51 +1,53 @@
+var Promise = require('bluebird');
+
 var SyncRestaurant = function syncRestaurant() {
 	var customerNumber = 0;
-	var customers = 0;
+
 	var takeOrder = function(customer, dishesToPrepare) {
 		customerNumber++;
-		this.customers[customerNumber] = customer;
+		customer.number = customerNumber;
 		console.log('Order Received from customer %d', customerNumber);
-		var preparedItems = prepareItems(dishesToPrepare);
-		serveCustomer.call(this, customer, preparedItems);
+		prepareItems(dishesToPrepare).bind(customer)
+			.then(serveCustomer).then(clean);
 	};
 
 	var prepareItems = function(itemsToPrepare) {
 		var timeToPrepare = Math.floor((Math.random() * 100 * itemsToPrepare.length));
 		console.log('Will take %dms to prepare %d items', timeToPrepare, itemsToPrepare.length);
-		var startTime = new Date();
-		while(true) {
-			//Simulating synchronous execution
-			if (((new Date() - startTime) / 10) > timeToPrepare) return itemsToPrepare;
-		}
+
+		return new Promise(function(fulfill, reject) {
+			setTimeout(function() {
+				fulfill(itemsToPrepare);
+			}, timeToPrepare);
+		});
 	};
 
-	var serveCustomer = function(customer, dishes) {
-		console.log('Serving customer %d', customerNumber);
-		customer.eat(dishes, customerNumber);
-		clean.call(this);
+	var serveCustomer = function(dishes) {
+		console.log('Serving customer %d', this.number);
+		this.eat(dishes);
 	};
 
 	var clean = function() {
-		delete this.customers[customerNumber];
+		var customerNumber = this.number;
+		delete this.number;
 		console.log('Cleaned up after customer ', customerNumber);
 	}
 	return {
-		serve: takeOrder,
-		customers: customers
+		serve: takeOrder
 	};
 }
 
 var Customer = function customer(name) {
 	var name = name;
-	this.eat = function(dishes, number) {
-		console.log('Eating');
+	this.eat = function(dishes) {
+		console.log('Eating %d', this.number);
 		var timeToEat = Math.floor((Math.random() * 100 * dishes.length));
 		var startTime = new Date();
 		while(true) {
-			//Simulating synchronous execution
+			//Eating time
 			if (((new Date() - startTime) / 10) > timeToEat) break;
 		}
-		console.log('Done %d', number);
+		console.log('Done %d', this.number);
 		return;
 	};
 }
