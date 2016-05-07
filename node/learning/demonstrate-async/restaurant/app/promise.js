@@ -1,5 +1,7 @@
 var Promise = require('bluebird');
-
+/*
+ * This is a comment
+ */
 var SyncRestaurant = function syncRestaurant() {
 	var customerNumber = 0;
 
