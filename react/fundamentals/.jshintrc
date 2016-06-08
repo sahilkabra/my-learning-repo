@@ -1,0 +1,12 @@
+{
+  esversion: '6',
+  freeze: 'true',
+  predef: [
+    'module', 
+    'require'
+  ],
+  strict: 'implied',
+  undef: 'true',
+  unused: 'true',
+}
+
