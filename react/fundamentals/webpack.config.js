@@ -7,14 +7,14 @@ var HTMLWebpackPluginConfig = new htmlWebpackPlugin({
   inject: 'body'  
 });
 module.exports = {
-  target: 'node',
-  externals: [nodeExternals()],
+//  target: 'node',
+//  externals: [nodeExternals()],
   entry: [
     './app/app.js'
   ],
   module:{
     loaders: [
-      {test: /\.js$/, loader: 'babel', exclude: /node_modules/}
+      {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/}
     ]
   },
   output:{
