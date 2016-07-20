@@ -24,7 +24,7 @@ export function next(state) {
 }
 
 export function vote(state, voteFor) {
-    return state.updateIn(['vote', 'tally', voteFor], 0, tally => tally + 1);
+    return state.updateIn(['tally', voteFor], 0, tally => tally + 1);
 }
 
 function getWinners(vote) {
