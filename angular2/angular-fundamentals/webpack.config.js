@@ -11,25 +11,28 @@ module.exports = {
   entry: ['./src/index.ts'],
   output:{
     filename: 'app_bundle.js',
-    path: __dirname + '/dist'
+    path: path.resolve(__dirname, 'dist')
   },
-  debug: true,
-  devtool: 'source-map',
+  module:{
+    rules: loaders
+  },
   resolve: {
-      root: path.resolve(__dirname),
-      extensions: ['', '.ts'],
+      modules: [
+          path.resolve('./src'),
+          'node_modules'
+      ],
+      extensions: ['.ts', '.js', '.json'],
       alias : {
           app: 'src'
       }
   },
-  resolveLoaders: {
-      modulesDirectories: ['node_modules']
-  },
-  module:{
-    loaders: loaders
-  },
+  context: __dirname,
+  target: "web",
   plugins: [
     HTMLWebpackPluginConfig
-  ]
+  ],
+  resolveLoader: {
+      modules: [path.join(__dirname, 'node_modules')]
+  }
 };
 

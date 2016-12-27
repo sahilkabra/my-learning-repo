@@ -9,12 +9,11 @@ describe('About Component', () => {
     let comp: AboutComponent;
     let fixture: ComponentFixture<AboutComponent>;
 
-    before(async(() => {
+    before(() => {
         TestBed.configureTestingModule({
             declarations: [AboutComponent],
         })
-        .compileComponents();
-    }));
+    });
 
     before(() => {
         fixture = TestBed.createComponent(AboutComponent);

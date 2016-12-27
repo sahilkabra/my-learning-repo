@@ -21,6 +21,9 @@ module.exports = function(config) {
             }
         }
     ),
+    webpackMiddleware: {
+        stats: 'errors-only'
+    },
     webpackServer: {
         noInfo: true
     },

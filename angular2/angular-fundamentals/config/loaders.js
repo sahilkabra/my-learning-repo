@@ -1,10 +1,12 @@
+const path = require('path');
+
 const loaders = [{
     test: /\.ts$/,
     loaders: ['awesome-typescript-loader', 'angular2-template-loader'],
-    exclude: /node_modules/,
+    exclude: path.resolve(__dirname, 'node_modules'),
 }, {
-    test: /.json/,
-    loader: 'json'
+    test: /\.json$/,
+    loader: 'json-loader'
 }];
 
 module.exports = loaders;
