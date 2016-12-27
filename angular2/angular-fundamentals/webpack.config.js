@@ -1,6 +1,6 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
-const loaders = require('config/loaders');
+const loaders = require('./config/loaders');
 
 const HTMLWebpackPluginConfig = new htmlWebpackPlugin({
   template: __dirname + '/src/index.html',

@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "baseUrl": "./",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "lib": [
@@ -11,6 +12,12 @@
         "noImplicitAny": true,
         "sourceMap": true,
         "suppressImplicitAnyIndexErrors": true,
-        "target": "es5"
-    }
+        "target": "es5",
+        "paths": {
+            "app": ["src"]
+        }
+    },
+    "exclude": [
+        "node_modules"
+    ]
 }

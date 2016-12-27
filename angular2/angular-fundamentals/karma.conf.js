@@ -7,12 +7,12 @@ module.exports = function(config) {
     basePath: '',
     frameworks: ['mocha', 'chai'],
     files: [
-      'test/tests.webpack.js'
+        {pattern: 'config/karma.test.shim.js', watched: 'false'}
     ],
     exclude: [
     ],
     preprocessors: {
-        'test/tests.webpack.js': ['webpack']
+        'config/karma.test.shim.js': ['webpack']
     },
     webpack: Object.assign({},
         webpackConfig,
