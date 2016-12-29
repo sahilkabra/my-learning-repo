@@ -1,6 +1,8 @@
 const path = require('path');
+const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const loaders = require('./config/loaders');
+const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 
 const HTMLWebpackPluginConfig = new htmlWebpackPlugin({
   template: __dirname + '/src/index.html',
@@ -8,17 +10,22 @@ const HTMLWebpackPluginConfig = new htmlWebpackPlugin({
   inject: 'body'
 });
 module.exports = {
-  entry: ['./src/index.ts'],
+  entry: {
+      'polyfills': './src/polyfills.ts',
+      'vendor': './src/vendor.ts',
+      'app': './src/index.ts'
+  },
   output:{
-    filename: 'app_bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: '[name].js',
+    chunkFilename: '[id].chunk.js',
+    path: root('dist')
   },
   module:{
     rules: loaders
   },
   resolve: {
       modules: [
-          path.resolve('./src'),
+          path.resolve('.'),
           'node_modules'
       ],
       extensions: ['.ts', '.js', '.json'],
@@ -29,10 +36,27 @@ module.exports = {
   context: __dirname,
   target: "web",
   plugins: [
-    HTMLWebpackPluginConfig
+    HTMLWebpackPluginConfig,
+    new ContextReplacementPlugin(
+        /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
+        root('./src'),
+        {}
+    ),
+    new webpack.optimize.CommonsChunkPlugin({
+        name: ['app', 'vendor', 'polyfills']
+    })
   ],
   resolveLoader: {
       modules: [path.join(__dirname, 'node_modules')]
+  },
+  devServer: {
+      port: 15001,
+      host: 'localhost',
+      historyApiFallback: true,
+      stats: 'minimal'
   }
 };
 
+function root(__path) {
+    return path.join(__dirname, __path)
+}

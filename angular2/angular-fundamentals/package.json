@@ -4,6 +4,8 @@
   "description": "",
   "scripts": {
     "bundle": "webpack",
+    "server:dev": "webpack-dev-server --progress --watch --content-base src/",
+    "start": "npm run server:dev",
     "test": "karma start"
   },
   "author": "",
@@ -38,6 +40,7 @@
     "karma-webpack": "^1.8.0",
     "mocha": "^3.2.0",
     "typescript": "^2.1.4",
-    "webpack": "^2.2.0-rc.2"
+    "webpack": "^2.2.0-rc.2",
+    "webpack-dev-server": "^2.2.0-rc.0"
   }
 }
