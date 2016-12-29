@@ -7,6 +7,9 @@ const loaders = [{
 }, {
     test: /\.json$/,
     loader: 'json-loader'
+}, {
+    test: /\.html$/,
+    loader: 'html-loader'
 }];
 
 module.exports = loaders;

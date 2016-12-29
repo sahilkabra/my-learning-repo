@@ -1,0 +1,64 @@
+#!/bin/bash
+
+# create skeleton for an angular module
+# takes a module name as input or uses the default of "module"
+# takes a path where to create the module
+# update template url for the component as appropriate
+#   for webpack, works as output
+#   for others, update accordingly
+
+while getopts "p:m:" opt; do
+    case "$opt" in
+    p) path=$OPTARG
+        ;;
+    m) module_name=$OPTARG
+        ;;
+    esac
+done
+
+if [ ! -d $path/$module_name ]; then
+    mkdir $path/$module_name
+fi
+if [ ! -e $path/$module_name.component.ts ]; then
+    first_char=${module_name:0:1}
+    echo "
+import {Component} from '@angular/core';
+
+@Component({
+    selector: '$module_name',
+    templateUrl: './$module_name.component.html'
+})
+export default class ${first_char^}${module_name:1}Component {}
+" >> $path/$module_name/$module_name.component.ts
+fi
+if [ ! -e $path/$module_name.component.html ]; then
+    touch $path/$module_name/$module_name.component.html
+fi
+if [ ! -e $path/$module_name.component.spec.ts ]; then
+    touch $path/$module_name/$module_name.component.spec.ts
+fi
+if [ ! -e $path/$module_name.module.ts ]; then
+    echo "
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import Component from './$module_name.component';
+
+@NgModule({
+    imports: [BrowserModule],
+    declarations: [Component],
+    bootstrap: [Component],
+})
+export default class Module {}
+" >> $path/$module_name/$module_name.module.ts
+fi
+if [ ! -e $path/$module_name/main.ts ]; then
+    echo "
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import Module from './$module_name.module';
+
+export default Module;
+
+platformBrowserDynamic().bootstrapModule(Module);
+" >> $path/$module_name/main.ts
+fi
+

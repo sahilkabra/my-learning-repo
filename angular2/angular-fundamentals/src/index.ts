@@ -1,1 +1,1 @@
-import 'app/modules/about/main';
+import 'app/modules/hero/main';
