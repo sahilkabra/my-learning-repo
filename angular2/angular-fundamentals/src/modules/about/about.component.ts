@@ -4,4 +4,6 @@ import {Component} from '@angular/core';
     selector: 'about',
     template: `<h1>About {{name}}</h1>`
 })
-export default class AboutComponent {}
+export default class AboutComponent {
+    name = 'Angular';
+}

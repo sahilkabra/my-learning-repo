@@ -1,6 +1,7 @@
 var path = require('path');
 var webpackConfig = require('./webpack.config.js');
 webpackConfig.entry = {};
+webpackConfig.plugins = webpackConfig.plugins.filter(p => !p.chunkNames);
 
 module.exports = function(config) {
   config.set({

@@ -9,17 +9,19 @@ describe('About Component', () => {
     let comp: AboutComponent;
     let fixture: ComponentFixture<AboutComponent>;
 
-    before(() => {
+    beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [AboutComponent],
-        })
-    });
-
-    before(() => {
+        });
         fixture = TestBed.createComponent(AboutComponent);
         comp = fixture.componentInstance;
         de = fixture.debugElement.query(By.css('h1'));
     });
 
     it ('should create component', () => expect(comp).to.be.an('object'));
+    it ('should have header', () => {
+        fixture.detectChanges();
+        expect(de.name).to.equal('h1');
+        expect(de.nativeElement.textContent).to.equal('About Angular');
+    });
 });
