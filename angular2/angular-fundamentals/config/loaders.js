@@ -10,6 +10,9 @@ const loaders = [{
 }, {
     test: /\.html$/,
     loader: 'html-loader'
+}, {
+    test: /\.css$/,
+    loader: 'style-loader!css-loader'
 }];
 
 module.exports = loaders;
