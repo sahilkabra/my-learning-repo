@@ -1,20 +1,16 @@
-import {Component} from '@angular/core';
+import {
+    Component,
+    Input,
+} from '@angular/core';
 
-
-class Hero {
-    id: number;
-    name: string
-}
+import Hero from './hero';
 
 @Component({
     selector: 'hero',
     templateUrl: './hero.component.html'
 })
 export default class HeroComponent {
-    title = 'Tour Of Heroes';
-    hero: Hero = {
-        id: 0,
-        name: 'Windstorm',
-    };
+    @Input()
+    hero: Hero;
 }
 

@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 
 import Component from './hero.component';
 
+
 @NgModule({
     imports: [
         BrowserModule,

@@ -6,8 +6,6 @@ import HeroComponent from './hero.component';
 import {expect} from 'chai';
 
 describe('Hero Component', () => {
-    let titleDe: DebugElement;
-    let nameDe: DebugElement;
     let comp: HeroComponent;
     let fixture: ComponentFixture<HeroComponent>;
 
@@ -18,18 +16,18 @@ describe('Hero Component', () => {
         });
         fixture = TestBed.createComponent(HeroComponent);
         comp = fixture.componentInstance;
-        titleDe = fixture.debugElement.query(By.css('h1'));
-        nameDe = fixture.debugElement.query(By.css('h2'));
     });
 
     it ('should create component', () => expect(comp).to.be.an('object'));
-    it ('should have title', () => {
+    it ('should not have name when hero is not passed', () => {
         fixture.detectChanges();
-        expect(titleDe.name).to.equal('h1');
-        expect(titleDe.nativeElement.textContent).to.equal('Tour Of Heroes');
+        const nameDe = fixture.debugElement.query(By.css('h2'));
+        expect(nameDe).to.be.null;
     });
-    it ('should have name', () => {
+    it ('should have name when hero is passed', () => {
+        comp.hero = {id: 1, name: 'Windstorm'};
         fixture.detectChanges();
+        const nameDe = fixture.debugElement.query(By.css('h2'));
         expect(nameDe.name).to.equal('h2');
         expect(nameDe.nativeElement.textContent).to.equal('Windstorm');
     });
