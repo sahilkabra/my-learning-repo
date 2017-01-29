@@ -14,7 +14,6 @@
         "suppressImplicitAnyIndexErrors": true,
         "target": "es5",
         "paths": {
-            "app": ["src"]
         }
     },
     "exclude": [

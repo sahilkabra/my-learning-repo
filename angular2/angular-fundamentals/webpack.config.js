@@ -13,7 +13,7 @@ module.exports = {
   entry: {
       'polyfills': './src/polyfills.ts',
       'vendor': './src/vendor.ts',
-      'app': './src/index.ts'
+      'app': './src/app.module.ts'
   },
   output:{
     filename: '[name].js',

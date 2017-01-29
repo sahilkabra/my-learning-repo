@@ -2,16 +2,18 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 
-import Component from './hero.component';
-
+import HeroComponent from './hero.component';
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
     ],
-    declarations: [Component,],
-    bootstrap: [Component],
+    exports: [
+        HeroComponent,
+    ],
+    declarations: [HeroComponent,],
+    bootstrap: [HeroComponent],
 })
 export default class Module {}
 
