@@ -1,23 +1,30 @@
 import {
     Component,
+    OnInit,
 } from '@angular/core';
 
-import {HeroModel, HeroModule} from 'src/modules/hero/main';
-
-const HEROES: HeroModel[] = [
-    {id: 1, name: 'Superman'},
-    {id: 2, name: 'Batman'},
-    {id: 3, name: 'Antman'},
-    {id: 4, name: 'Spiderman'},
-    {id: 5, name: 'Magma'},
-    {id: 6, name: 'Hulk'},
-    {id: 7, name: 'Magneta'},
-];
+import {
+    HeroModel,
+    HeroModule,
+    HeroService,
+} from 'src/modules/hero/main';
 
 @Component({
     selector: 'app',
-    templateUrl: './app.html'
+    templateUrl: './app.html',
+    providers: [HeroService],
 })
-export default class AppComponent {
-    heroes = HEROES;
+export default class AppComponent implements OnInit {
+    heroes: HeroModel[];
+
+    constructor(private heroService: HeroService) {
+    }
+
+    ngOnInit(): void {
+        this.getHeroes().then(heroes => this.heroes = heroes);
+    }
+
+    async getHeroes(): Promise<HeroModel[]> {
+        return await this.heroService.getHeroes();
+    }
 }

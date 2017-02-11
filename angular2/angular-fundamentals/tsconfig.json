@@ -3,6 +3,7 @@
         "baseUrl": "./",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
+        "importHelpers": true,
         "lib": [
             "es2015",
             "dom"
@@ -10,6 +11,8 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "noImplicitAny": true,
+        "noEmitOnError": true,
+        "pretty": true,
         "sourceMap": true,
         "suppressImplicitAnyIndexErrors": true,
         "target": "es5",
