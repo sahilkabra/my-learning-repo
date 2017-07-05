@@ -3,6 +3,8 @@ var React = require('react');
 var ReactDom = require('react-dom');
 var Home = require('./components/homePage');
 var About = require('./components/about/aboutPage');
+var Header = require('./components/common/header');
+var Authors = require('./components/authors/authorPage');
 
 var App = React.createClass({
     render: function() {
@@ -10,11 +12,15 @@ var App = React.createClass({
 
         switch(this.props.route) {
             case 'about': Child = About; break;
+            case 'authors': Child = Authors; break;
             default: Child = Home;
         }
 
         return (
-            <div><Child/></div>
+            <div>
+                <Header/>
+                <Child/>
+            </div>
         );
     }
 });

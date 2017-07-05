@@ -21,10 +21,11 @@ var config = {
             'node_modules/bootstrap/dist/css/bootstrap.min.css',
             'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
         ],
+        images: './src/images/*'
     }
 };
 
-gulp.task('default', ['html', 'js', 'css', 'lint', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'css', 'lint', 'images', 'open', 'watch']);
 
 // Start dev server
 gulp.task('connect', function() {
@@ -74,3 +75,9 @@ gulp.task('lint', function() {
         .pipe(lint({configFile: 'eslint.config.json'}))
         .pipe(lint.format()) ;
 });
+
+gulp.task('images', function() {
+    gulp.src(config.paths.images)
+        .pipe(gulp.dest(config.paths.dist + '/images'));
+});
+
