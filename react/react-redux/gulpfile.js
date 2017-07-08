@@ -25,7 +25,7 @@ var config = {
     }
 };
 
-gulp.task('default', ['html', 'js', 'css', 'lint', 'images', 'open', 'watch']);
+gulp.task('default', ['html', 'lint', 'js', 'css', 'images', 'open', 'watch']);
 
 // Start dev server
 gulp.task('connect', function() {
