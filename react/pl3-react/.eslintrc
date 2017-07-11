@@ -26,7 +26,7 @@
     "eol-last": 0,
     "jsx-quotes": 1,
     "no-alert": 0,
-    "no-console": 1,
+    "no-console": 0,
     "no-debugger": 1,
     "no-lone-blocks": 0,
     "no-trailing-spaces": 0,
