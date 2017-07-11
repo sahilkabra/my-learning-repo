@@ -8,7 +8,7 @@
     "react"
   ],
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 8,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
@@ -64,7 +64,7 @@
     "react/require-extension": 1,
     "react/self-closing-comp": 1,
     "react/sort-comp": 1,
-    "react/wrap-multilines": 1
-    "semi": [1, "always"],
+    "react/wrap-multilines": 1,
+    "semi": [1, "always"]
   }
 }
