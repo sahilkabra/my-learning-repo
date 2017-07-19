@@ -31,10 +31,10 @@ function getComponentData(paths, componentName) {
     const content = readFile(path.join(paths.components, componentName, componentName + '.js'));
     const info = parse(content);
     return {
-        name: componentName;
+        name: componentName,
         description: info.componentDescription,
         props: info.props,
-        code: context,
+        code: content,
         examples: getExampleData(paths.examples, componentName),
     };
 }
