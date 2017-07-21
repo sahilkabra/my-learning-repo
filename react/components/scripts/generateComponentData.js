@@ -4,13 +4,16 @@ var chalk = require('chalk');
 var parse = require('react-docgen').parse;
 var chokidar = require('chokidar');
 
-var paths = {
-  examples: path.join(__dirname, '../src', 'docs', 'examples'),
-  components: path.join(__dirname, '../src', 'components'),
-  output: path.join(__dirname, '../config', 'componentData.js'),
+const joincwd = (...paths) => path.join.apply(path, [__dirname, ...paths]);
+const paths = {
+  examples: joincwd('../src', 'docs', 'examples'),
+  components: joincwd('../src', 'components'),
+  output: joincwd('../config', 'componentData.js'),
 };
-
-const enableWatch = process.argv.slice(2) === '--watch';
+const enableWatch = process.argv[2] === '--watch';
+const getDirectories = (filePath) => fs.readdirSync(filePath).filter(file => fs.statSync(path.join(filePath, file)).isDirectory());
+const getFiles = (filePath) => fs.readdirSync(filePath).filter(file => fs.statSync(path.join(filePath, file)).isFile());
+const readFile = fs.readFileSync
 
 if (enableWatch) chokidar.watch([paths.examples, paths.components]).on('change', () => {generate(paths);});
 else generate(paths);
@@ -63,20 +66,10 @@ function getExampleFiles(examplePath, componentName) {
     return files;
 }
 
-function getDirectories(filePath) {
-    return fs.readdirSync(filePath).filter(file => fs.statSync(path.join(filePath, file)).isDirectory());
-}
-
-function getFiles(filePath, filter) {
-    return fs.readdirSync(filePath).filter(file => fs.statSync(path.join(filePath, file)).isFile());
-}
-
 function writeFile(filePath, content) {
     fs.writeFile(filePath, content, function(err) {
         err? console.error(`error writing ${filePath}: ${err}`) : console.log(`${filePath} saved`);
     });
 }
 
-function readFile(filePath) {
-    return fs.readFileSync(filePath, 'utf-8');
-}
+
