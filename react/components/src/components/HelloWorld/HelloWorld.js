@@ -1,8 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const HelloWorld = props => <div> Hello {props.message} </div>;
+/** A hello world component */
+const HelloWorld = props => <div> Hello {props.message} </div> ;
+
 HelloWorld.propTypes = {
-    message: React.PropTypes.string,
+    /** Message to display */
+    message: PropTypes.string,
+};
+
+HelloWorld.defaultProps = {
+    message: 'World',
 };
 
 export default HelloWorld;
