@@ -31,7 +31,7 @@ function generate(paths) {
 }
 
 function getComponentData(paths, componentName) {
-    const content = readFile(path.join(paths.components, componentName, componentName + '.js'));
+    const content = readFile(path.join(paths.components, componentName, componentName + '.js'), 'utf-8');
     const info = parse(content);
     return {
         name: componentName,
@@ -46,7 +46,7 @@ function getExampleData(examplePath, componentName) {
     const examples = getExampleFiles(examplePath, componentName);
     return examples.map(file => {
         const filePath = path.join(examplePath, componentName, file);
-        const content = readFile(filePath);
+        const content = readFile(filePath, 'utf-8');
         var info = parse(content);
         return {
             name: file.slice(0, -3),
@@ -57,10 +57,11 @@ function getExampleData(examplePath, componentName) {
 }
 
 function getExampleFiles(examplePath, componentName) {
-    const files = [];
+    let files;
     try {
         files = getFiles(path.join(examplePath, componentName));
     } catch(error) {
+        console.log(error);
         console.error(`no examples found for ${componentName}`);
     }
     return files;
