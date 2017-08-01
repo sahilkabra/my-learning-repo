@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const NavRow = ({name}) => <li key={name}><a href={`${name}`}>{name}</a></li>;
+const NavRow = ({name}) => <li><a href={`${name}`}>{name}</a></li>;
 NavRow.propTypes = {
     name: PropTypes.string.isRequired,
 };
@@ -9,7 +9,7 @@ NavRow.propTypes = {
 const Navigation = ({componentNames}) =>
     <ul className='navigation'>
         {
-            componentNames.map(name => <NavRow name={name}/>)
+            componentNames.map(name => <NavRow key={name} name={name}/>)
         }
     </ul>;
 Navigation.propTypes = {

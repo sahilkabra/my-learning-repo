@@ -14,7 +14,7 @@ const ComponentPage = ({component}) => {
             <h3>Example</h3>
             {
                 examples.length > 0
-                ? examples.map(ex => <Example key={examples.code} example={examples} componentName={name} />)
+                ? examples.map(ex => <Example key={ex.code} example={ex} componentName={name} />)
                 : 'No Examples'
             }
             <h3>Props</h3>
@@ -28,7 +28,7 @@ const ComponentPage = ({component}) => {
 };
 
 ComponentPage.propTypes = {
-    component: PropTypes.array.isRequired,
+    component: PropTypes.object.isRequired,
 };
 
 export default ComponentPage;
