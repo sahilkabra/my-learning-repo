@@ -1,32 +1,27 @@
 module Main exposing (main)
 
-import Actions exposing (Action)
-import Html exposing (Html, program, div)
-import Reducer exposing (reducer)
-import Model exposing (Model)
+import Todo.Actions exposing (Action)
+import Html exposing (Html, program)
+import Todo.Reducer exposing (reducer)
+import Todo.Model exposing (TodoModel, TodoItem, initialModel)
+import Todo.View exposing (todoView)
 
 
-main : Program Never Model Action
+main : Program Never TodoModel Action
 main =
     program
         { init = init
-        , view = view
+        , view = todoView
         , update = reducer
         , subscriptions = subscriptions
         }
 
 
-init : ( Model, Cmd Action )
+init : ( TodoModel, Cmd Action )
 init =
-    ( Model "Hello Elm", Cmd.none )
+    ( initialModel, Cmd.none )
 
 
-view : Model -> Html Action
-view model =
-    div []
-        [ Html.text model.message ]
-
-
-subscriptions : Model -> Sub Action
+subscriptions : TodoModel -> Sub Action
 subscriptions model =
     Sub.none
