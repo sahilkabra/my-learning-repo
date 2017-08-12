@@ -1,9 +1,12 @@
-module Main exposing (..)
+module Main exposing (main)
 
+import Actions exposing (Action)
 import Html exposing (Html, program, div)
+import Reducer exposing (reducer)
+import Model exposing (Model)
 
 
-main : Program Never State Action
+main : Program Never Model Action
 main =
     program
         { init = init
@@ -13,30 +16,17 @@ main =
         }
 
 
-type alias State =
-    String
-
-
-type Action
-    = Noop
-
-
-init : ( State, Cmd Action )
+init : ( Model, Cmd Action )
 init =
-    ( "Hello", Cmd.none )
+    ( Model "Hello Elm", Cmd.none )
 
 
-view : State -> Html Action
+view : Model -> Html Action
 view model =
     div []
-        [ Html.text model ]
+        [ Html.text model.message ]
 
 
-reducer : Action -> State -> ( State, Cmd Action )
-reducer msg state =
-    ( state, Cmd.none )
-
-
-subscriptions : State -> Sub Action
-subscriptions state =
+subscriptions : Model -> Sub Action
+subscriptions model =
     Sub.none
