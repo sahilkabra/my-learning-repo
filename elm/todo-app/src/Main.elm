@@ -1,27 +1,41 @@
 module Main exposing (main)
 
 import Todo.Actions exposing (Action, fetchTodos)
-import Html exposing (Html, program)
+import Html exposing (Html, program, div)
 import Todo.Reducer exposing (reducer)
-import Todo.Model exposing (TodoModel, TodoItem, initialModel)
-import Todo.View exposing (todoView)
+import Todo.Model exposing (TodoModel, TodoItem, initialModel, Route(..))
+import Todo.TodosView exposing (todosView, todoItemView, notFoundView)
+import Navigation exposing (Location)
+import Routing
 
 
 main : Program Never TodoModel Action
 main =
-    program
+    Navigation.program Todo.Actions.OnLocationChange
         { init = init
-        , view = todoView
+        , view = view
         , update = reducer
-        , subscriptions = subscriptions
+        , subscriptions = always Sub.none
         }
 
 
-init : ( TodoModel, Cmd Action )
-init =
-    ( initialModel, fetchTodos )
+init : Location -> ( TodoModel, Cmd Action )
+init location =
+    let
+        currentRoute =
+            Routing.parseLocation location
+    in
+        ( initialModel currentRoute, fetchTodos )
 
 
-subscriptions : TodoModel -> Sub Action
-subscriptions model =
-    Sub.none
+view : TodoModel -> Html Action
+view model =
+    case model.route of
+        RouteTodosHome ->
+            todosView model.todos
+
+        RouteNotFound ->
+            notFoundView
+
+        RouteTodoItem id ->
+            todoItemView model id

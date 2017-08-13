@@ -1,6 +1,7 @@
 module Todo.Actions exposing (..)
 
 import Http
+import Navigation exposing (Location)
 import Todo.Model exposing (TodoItem)
 import RemoteData exposing (WebData)
 import Json.Decode as Decode
@@ -9,6 +10,7 @@ import Json.Decode.Pipeline exposing (decode, required, optional, hardcoded)
 
 type Action
     = OnFetchTodos (WebData (List TodoItem))
+    | OnLocationChange Location
 
 
 fetchTodos : Cmd Action
