@@ -1,18 +1,16 @@
 module Todo.Model exposing (..)
 
+import RemoteData exposing (WebData)
+
 
 type alias TodoModel =
-    { todos : List TodoItem
+    { todos : WebData (List TodoItem)
     }
 
 
 initialModel : TodoModel
 initialModel =
-    { todos =
-        [ TodoItem 1 Pending "Learn CycleJS"
-        , TodoItem 2 Inprogress "Build Elm App"
-        , TodoItem 3 Complete "Configure Laptop env"
-        ]
+    { todos = RemoteData.Loading
     }
 
 

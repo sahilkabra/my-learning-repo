@@ -1,6 +1,6 @@
 module Main exposing (main)
 
-import Todo.Actions exposing (Action)
+import Todo.Actions exposing (Action, fetchTodos)
 import Html exposing (Html, program)
 import Todo.Reducer exposing (reducer)
 import Todo.Model exposing (TodoModel, TodoItem, initialModel)
@@ -19,7 +19,7 @@ main =
 
 init : ( TodoModel, Cmd Action )
 init =
-    ( initialModel, Cmd.none )
+    ( initialModel, fetchTodos )
 
 
 subscriptions : TodoModel -> Sub Action
