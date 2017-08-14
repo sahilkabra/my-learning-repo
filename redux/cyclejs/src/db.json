@@ -1,0 +1,7 @@
+{
+    "todos" :
+    [ { "id": 1, "task": "Create Elm Project" }
+    , { "id": 2, "task": "Learn Cycle JS" }
+    , { "id": 3, "task": "Setup laptop" }
+    ]
+}

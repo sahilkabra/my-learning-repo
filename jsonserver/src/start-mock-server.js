@@ -1,2 +1,5 @@
 #! /usr/bin/env node
-node server.js
+var startServer = require('./server').startServer;
+
+startServer();
+

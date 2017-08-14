@@ -4,11 +4,11 @@
   "description": "Mock Rest calls",
   "main": "index.js",
   "bin": {
-      "start-mock-server": "src/start-mock-server"
+      "start-mock-server": "src/start-mock-server.js"
   },
   "scripts": {
     "start": "npm run start:rest",
-    "start:rest": "node src/server.js"
+    "start:rest": "node ./src/start-mock-server.js"
   },
   "author": "",
   "license": "ISC",

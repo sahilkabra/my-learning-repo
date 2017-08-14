@@ -1,11 +1,16 @@
 var jsonServer = require('json-server');
 
-var server = jsonServer.create();
+function startServer() {
+    var server = jsonServer.create();
+    server.use(jsonServer.defaults());
 
-server.use(jsonServer.defaults());
+    var router = jsonServer.router('src/db.json');
+    server.use(router)
 
-var router = jsonServer.router('src/db.json');
-server.use(router)
+    console.log('server listening at 4000');
+    server.listen(4000);
+}
 
-console.log('server listening at 4000');
-server.listen(4000);
+module.exports = {
+    startServer: startServer
+};
