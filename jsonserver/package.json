@@ -1,0 +1,18 @@
+{
+  "name": "my-json-server",
+  "version": "0.0.1",
+  "description": "Mock Rest calls",
+  "main": "index.js",
+  "bin": {
+      "start-mock-server": "src/start-mock-server"
+  },
+  "scripts": {
+    "start": "npm run start:rest",
+    "start:rest": "node src/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^0.12.0"
+  }
+}
