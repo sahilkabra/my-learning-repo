@@ -1,0 +1,13 @@
+{
+    "printWidth": 80,
+    "singleQuote": true,
+    "tabWidth": 4,
+    "trailingComma": "all",
+    "overrides": [{
+        "files": "*.ts*",
+        "parser": "typescript"
+    }, {
+        "files": "*.json",
+        "parser": "json"
+    }]
+}
