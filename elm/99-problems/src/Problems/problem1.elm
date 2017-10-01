@@ -8,4 +8,4 @@ import Html
 
 view : Html.Html a
 view =
-    Html.text "Testing"
+    Html.text "Problem 1"
