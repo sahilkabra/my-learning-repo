@@ -1,7 +1,11 @@
-module Problems.View exposing (view)
+module Problems.View exposing (view, ProblemNumber)
 
 import Html exposing (div, text, header, nav, section, h2, ul, li, a)
 import Html.Attributes exposing (class, href)
+
+
+type alias ProblemNumber =
+    Int
 
 
 view : Html.Html a
@@ -17,7 +21,7 @@ view =
 
 
 type alias Problem =
-    { key : Int
+    { key : ProblemNumber
     , label : String
     , url : String
     }
@@ -27,7 +31,7 @@ problems : List Problem
 problems =
     let
         problem n =
-            { key = n, label = "Problem " ++ toString n, url = "/problem/" ++ toString n }
+            { key = n, label = "Problem " ++ toString n, url = "#problem/" ++ toString n }
     in
         List.map problem (List.range 1 99)
 
