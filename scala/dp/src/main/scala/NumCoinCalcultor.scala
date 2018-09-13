@@ -3,20 +3,31 @@
  */
 object NumCoinCalculator extends App {
 
-  private def calculate(coins: List[Int], unit: Int, currentCoinIndex: Int): Int = {
-    if (coins.isEmpty || unit < 0 || currentCoinIndex < 0) {
-      0
-    } else if (unit == 0) {
-      1
-    } else {
-      val currentCoin = coins(currentCoinIndex)
-      if (currentCoin > unit) {
-        0 + calculate(coins, unit, currentCoinIndex - 1)
-      } else {
-        calculate(coins, unit - currentCoin, currentCoinIndex)
+  private def rcalculate(coins: Array[Long], amountToMakeChange: Long, currentCoinIndex: Int): Long = {
+    if (coins.isEmpty || currentCoinIndex < 0 || amountToMakeChange < 0) 0
+    else if (amountToMakeChange == 0) 1
+    else {
+      val currentCoinValue = coins(currentCoinIndex)
+      if (currentCoinValue == 1) 1
+      else if (currentCoinValue > amountToMakeChange) rcalculate(coins, amountToMakeChange, currentCoinIndex - 1)
+      else {
+        (rcalculate(coins, amountToMakeChange, currentCoinIndex - 1)
+          + rcalculate(coins, amountToMakeChange - currentCoinValue, currentCoinIndex))
       }
     }
   }
 
-  def getWays(coins: List[Int], unit: Int): Int = calculate(coins.sorted, unit, coins.length - 1)
+  private def dpcalculate(coins: Array[Long], amount: Long): Long = {
+    val ways = Array.fill(amount + 1)(0)
+    ways(0) = 1
+
+    for (i <- 0 to coins.length; j <- coins(i) to amount) {
+      ways(j) = ways(j) + ways(j - coins(i))
+    }
+    ways(amount + 1)
+  }
+
+  def getWays(coins: Array[Long], unit: Long): Long =
+    // rcalculate(coins.sorted, unit, coins.length - 1)
+    dpcalculate(coins.sorted, unit)
 }
